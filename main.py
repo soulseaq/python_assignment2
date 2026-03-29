@@ -1,30 +1,63 @@
 name = input("Enter customer name: ")
-item1_name = input("Enter name of item 1: ")
-item1_price = int(input("Enter price of item 1(KZT): "))
-item2_name = input("Enter name of item 2: ")
-item2_price = int(input("Enter price of item 2(KZT): "))
-people = int(input("Enter number of people: "))
+all_items = 0
+subtotal = 0.0
 
-subtotal = item1_price + item2_price
-tip = subtotal * 0.1
-total = subtotal + tip
-per_person = total / people
+while True:
+    item_name = input("Enter item name(or 'done' to finish): ")
 
-print("=" * 30)
-print(" " * 10 + "CAFE BILL")
-print("=" * 30)
-print("Customer: ", name)
-print(item1_name + ": " + str(item1_price) + " KZT")
-print(item2_name + ": " + str(item2_price) + " KZT")
-print("Subtotal: " + str(subtotal) + " KZT")
-print("Tip (10%): " + str(tip) + " KZT")
-print("Total: " + str(total) + " KZT")
-print("Per person: " + str(per_person) + " KZT")
-print("=" * 30)
+    if item_name == "done":
+        break
 
-if tip > 0:
-    print("Tip included: True")
+    price = float(input("Enter item price: "))
+    all_items += 1
+    subtotal += price
+
+print(f"Customer: {name.upper()}")
+print(f"Items: {all_items}")
+print(f"Subtotal: {subtotal} KZT")
+
+hour = int(input("Enter current hour (0-23): "))
+
+percents_off = 0
+time_period = ""
+
+if 6<=hour<12:
+    percents_off = 10
+    time_period = "Morning discount"
+elif 12 <= hour < 17:
+    percents_off = 0
+    time_period = ("No discount")
+elif 17 <= hour < 22:
+    percents_off = 5
+    time_period = "Evening discount"
+else:
+    print("Closed")
+    exit()
+
+discount = subtotal * (percents_off/subtotal)
+with_discount = subtotal - discount
+tip =  with_discount * 0.1
+total = tip + with_discount
 
 
-if total > 5000:
-    print("Bill over 5000 KZT: True")
+print("-" * 30)
+print(f"\nTime period: {time_period}")
+print(f"Discount: {discount} KZT")
+print(f"Tip (10%) : {tip} KZT")
+print(f"Total : {total} KZT\n")
+print("-" * 30)
+
+print(f"Name uppercase: {name.upper()}")
+print(f"Name lowercase: {name.lower()}")
+print(f"Name length: {len(name)}")
+
+if name[0].upper() == 'A' or name[0].upper() == 'S':
+    print("VIP customer")
+else:
+    print("Regular customer")
+
+
+
+
+
+
