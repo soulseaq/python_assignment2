@@ -34,7 +34,7 @@ else:
     print("Closed")
     exit()
 
-discount = subtotal * (percents_off/subtotal)
+discount = subtotal * (percents_off/100)
 with_discount = subtotal - discount
 tip =  with_discount * 0.1
 total = tip + with_discount
